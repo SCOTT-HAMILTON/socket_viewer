@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 let express = require("express");
 let http_server = require("http").Server(express());
 let io_server = require("socket.io")(http_server);

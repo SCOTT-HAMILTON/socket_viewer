@@ -10,5 +10,6 @@
   },
   "devDependencies": {
     "ejs": "^2.5.7"
-  }
+  },
+  "bin": "app.js"
 }
