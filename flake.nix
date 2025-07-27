@@ -13,11 +13,18 @@
       in {
         packages.default = pkgs.mkYarnPackage {
           name = "socket-viewer";
-          src = ./.;
+          src = pkgs.fetchFromGitHub {
+            owner = "SCOTT-HAMILTON";
+            repo = "socket_viewer";
+            rev = "a17b59d76840fddbbef83943b70f664c18c965ce";
+            fetchSubmodules = true;
+            sha256 = "sha256-KBtFkifqA4xx+z16wKppJLrFeX83lEocK7dvf/5nvu0=";
+          };
           packageJSON = ./package.json;
           yarnLock = ./yarn.lock;
           yarnNix = ./yarn.nix;
         };
+        apps.default = nix-ros-overlay.inputs.flake-utils.lib.mkApp { drv = self.packages.${system}.default; };
       });
   nixConfig = {
     extra-substituters = [ "https://ros.cachix.org" ];
